@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useUnit } from "effector-react";
+import { $date, $budget, setDate, setBudget } from "../../store/index";
 import cn from "classnames";
 import styles from "./style.module.css";
 
@@ -7,10 +9,8 @@ type TProps = {
 };
 
 export const Calculator = ({ t }: TProps) => {
-	const [date, setDate] = useState(localStorage.getItem("savedDate") || "");
-	const [budget, setBudget] = useState(
-		localStorage.getItem("savedBudget") || ""
-	);
+	const date = useUnit($date);
+	const budget = useUnit($budget);
 	const [daysLeft, setDaysLeft] = useState("");
 	const [budgetLeft, setBudgetLeft] = useState("");
 	const [spend, setSpend] = useState("");
@@ -32,15 +32,11 @@ export const Calculator = ({ t }: TProps) => {
 	}, [date, budget]);
 
 	const handleDateChange = (e) => {
-		const newValue = e.target.value;
-		setDate(newValue);
-		localStorage.setItem("savedDate", newValue);
+		setDate(e.target.value);
 	};
 
 	const handleBudgetChange = (e) => {
-		const newValue = e.target.value;
-		setBudget(newValue);
-		localStorage.setItem("savedBudget", newValue);
+		setBudget(e.target.value);
 	};
 
 	const handleSpendChange = (e) => {
@@ -49,7 +45,6 @@ export const Calculator = ({ t }: TProps) => {
 			const newBudget = (parseFloat(budget) - spendValue).toString();
 			setSpend("");
 			setBudget(newBudget);
-			localStorage.setItem("savedBudget", newBudget);
 			setShowButton(false);
 		}
 	};

@@ -10,6 +10,8 @@
     "@types/react-dom": "^18.2.25",
     "astral-spg": "^0.0.69",
     "classnames": "^2.5.1",
+    "effector": "^23.2.0",
+    "effector-react": "^23.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }
