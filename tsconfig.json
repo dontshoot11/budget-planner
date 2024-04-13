@@ -1,13 +1,25 @@
 {
-	"extends": "./node_modules/astral-spg/tsconfig.json",
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"helpers": ["src/.helpers/index.ts"],
-			"ui-kit": ["src/.ui-kit/index.ts"],
-			"common-components": ["src/.common-components/index.ts"],
-			"common-modules": ["src/.common-modules/index.ts"],
-			"translationSettings": ["translationSettings.js"]
-		}
-	}
+  "extends": "./node_modules/astral-spg/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "/Users/n.artem/budget-planner",
+    "paths": {
+      "helpers": [
+        "src/.helpers/index.ts"
+      ],
+      "ui-kit": [
+        "src/.ui-kit/index.ts"
+      ],
+      "common-components": [
+        "src/.common-components/index.ts"
+      ],
+      "common-modules": [
+        "src/.common-modules/index.ts"
+      ],
+      "translationSettings": [
+        "translationSettings.js"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

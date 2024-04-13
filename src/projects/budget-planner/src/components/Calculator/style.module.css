@@ -33,3 +33,23 @@
 .text {
 	padding: 8px 0;
 }
+
+.inputWrap {
+	position: relative;
+	width: 100%;
+	height: fit-content;
+	display: grid;
+	gap: 8px;
+	justify-items: center;
+}
+
+.inputButton {
+	opacity: 0;
+	width: 40px;
+	height: 100%;
+	border: 1px solid var(--pure-black);
+}
+
+.inputButton.active {
+	opacity: 1;
+}
