@@ -1,0 +1,10 @@
+:root {
+	--bg-light: #f2f2f2;
+	--bg-light-2: #d9d9d9;
+	--pure-black: #000;
+	--pure-white: #fff;
+	--warning: #ff0;
+	--alert: #ff0000;
+	--semitransparent: rgba(255, 255, 255, 0.5);
+	--font-main: "Roboto", sans-serif;
+}

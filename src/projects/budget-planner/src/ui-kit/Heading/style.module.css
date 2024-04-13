@@ -1,0 +1,25 @@
+h1.heading {
+	font-size: 48rem;
+	font-weight: 700;
+	line-height: 100%;
+	@media (min-width: 768px) {
+		font-size: 82rem;
+	}
+}
+
+h2.heading {
+	font-size: 32rem;
+	font-weight: 700;
+	line-height: 100%;
+	@media (min-width: 768px) {
+		font-size: 56rem;
+	}
+}
+
+.black {
+	color: var(--dark);
+}
+
+.white {
+	color: var(--light);
+}
