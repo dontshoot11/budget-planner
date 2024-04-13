@@ -44,6 +44,21 @@ const { t } = getLangSettings(Astro.url);
 			) as HTMLInputElement;
 			const daysLeftValue = this.querySelector('[data-role="daysLeft"]');
 			const bugetLeftValue = this.querySelector('[data-role="budgetLeft"]');
+			const loadFromLocalStorage = () => {
+				const savedDate = localStorage.getItem("savedDate");
+				const savedBudget = localStorage.getItem("savedBudget");
+
+				if (datePicker && savedDate) {
+					datePicker.value = savedDate;
+				}
+
+				if (budgetPicker && savedBudget) {
+					budgetPicker.value = savedBudget;
+				}
+				if (datePicker.value && budgetPicker.value) {
+					calculate();
+				}
+			};
 			const calculate = () => {
 				const parsedEnterDate = Date.parse(datePicker.value);
 				const budgetValue = parseFloat(budgetPicker.value);
@@ -56,11 +71,13 @@ const { t } = getLangSettings(Astro.url);
 			};
 
 			datePicker.addEventListener("change", () => {
+				localStorage.setItem("savedDate", datePicker.value);
 				if (datePicker.value && budgetPicker.value) {
 					calculate();
 				}
 			});
 			budgetPicker.addEventListener("change", () => {
+				localStorage.setItem("savedBudget", budgetPicker.value);
 				if (datePicker.value && budgetPicker.value) {
 					calculate();
 				}
@@ -71,10 +88,12 @@ const { t } = getLangSettings(Astro.url);
 					budgetPicker.value = (
 						parseFloat(budgetPicker.value) - spendValue
 					).toString();
+					localStorage.setItem("savedBudget", budgetPicker.value);
 					spendPicker.value = "";
 					calculate();
 				}
 			});
+			document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
 		}
 	}
 	customElements.define("budget-calculator", BudgetCalculator);
