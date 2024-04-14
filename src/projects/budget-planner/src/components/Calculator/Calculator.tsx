@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
 import { useUnit } from "effector-react";
-import { $date, $budget, setDate, setBudget } from "../../store/index";
+import { googleLogin } from "../../firebase/firebase";
+import {
+	$date,
+	$budget,
+	$userLoggedIn,
+	setDate,
+	setBudget,
+	fetchBudgetFromFirebase,
+	fetchDateFromFirebase,
+} from "../../store/index";
 import cn from "classnames";
 import styles from "./style.module.css";
 
@@ -11,6 +20,7 @@ type TProps = {
 export const Calculator = ({ t }: TProps) => {
 	const date = useUnit($date);
 	const budget = useUnit($budget);
+	const userLoggedIn = useUnit($userLoggedIn);
 	const [daysLeft, setDaysLeft] = useState("");
 	const [budgetLeft, setBudgetLeft] = useState("");
 	const [spend, setSpend] = useState("");
@@ -30,6 +40,11 @@ export const Calculator = ({ t }: TProps) => {
 	useEffect(() => {
 		calculate();
 	}, [date, budget]);
+
+	useEffect(() => {
+		userLoggedIn && fetchBudgetFromFirebase();
+		userLoggedIn && fetchDateFromFirebase();
+	}, [userLoggedIn]);
 
 	const handleDateChange = (e) => {
 		setDate(e.target.value);
@@ -95,6 +110,10 @@ export const Calculator = ({ t }: TProps) => {
 					OK
 				</button>
 			</div>
+
+			<button onClick={googleLogin}>
+				Google Login {userLoggedIn && "✅"}{" "}
+			</button>
 		</div>
 	);
 };
